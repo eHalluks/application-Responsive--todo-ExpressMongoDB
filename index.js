@@ -1,25 +1,27 @@
-const express = require("express");
-const methodOverride = require("method-override");
-const {engine} = require('express-handlebars');
-const {handleError} = require("./utils/error");
+const path = require('path');
+const express = require('express');
+const { engine } = require('express-handlebars');
+const {TodoRecord} = require("./records/todo.record");
 
 const app = express();
-app.use(methodOverride("_method"));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static("public"));
-//global handle error function
-app.use(handleError);
-// app.use(express.json());
-app.engine('.hbs', engine({
-    extname: '.hbs',
-    // helpers: handlebarsHelpers,
-}));
+
+// Ustawienie folderu views jako folderu widoku.
+app.set('views', path.join(__dirname, 'views'));
+
+// Ustawienie silnika szablonów Handlebars jako domyślnego.
+app.engine('.hbs', engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
 app.get("/", (req, res) => {
-  res.render('todo/todo');
+
+    const todoList = TodoRecord.ListAll()
+
+    res.render('todo/todos', {
+        todoList,
+    });
+
 });
 
-app.listen(3000, 'localhost',  () => {
-  console.log("Server is running on port 3000 http://localhost:3000");
+app.listen(3000, () => {
+    console.log('Server is running on port 3000.');
 });

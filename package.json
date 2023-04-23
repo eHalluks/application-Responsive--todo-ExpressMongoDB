@@ -4,7 +4,6 @@
   "description": "Todo-List application/mongoDB/Express.js/Responsive/CSS",
   "main": "index.js",
   "scripts": {
-    "mongo:start": "cd c:/users/mateo/desktop/bazy danych/ && powershell.exe runMongoDB.ps1",
     "start": "npx nodemon index.js"
   },
   "keywords": [
