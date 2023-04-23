@@ -1,12 +1,31 @@
 {
   "name": "todoapp",
-  "version": "1.0.0",
-  "description": "",
+  "version": "^1.0.0",
+  "description": "Todo-List application/mongoDB/Express.js/Responsive/CSS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "mongo:start": "cd c:/users/mateo/desktop/bazy danych/ && powershell.exe runMongoDB.ps1",
+    "start": "npx nodemon index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "todo",
+    "Document",
+    "Application-localhost",
+    "MongoDB",
+    "Express.js",
+    "Method-Override",
+    "Express-handlebars",
+    "JavaScript",
+    "Node 18.16.0"
+  ],
+  "author": "ehalluks.com",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "method-override": "^3.0.0",
+    "moment": "^2.29.4",
+    "mongodb": "^5.3.0",
+    "mysql2": "^3.2.3"
+  }
 }
