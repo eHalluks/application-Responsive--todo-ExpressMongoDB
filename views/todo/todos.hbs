@@ -10,15 +10,17 @@
 
         <div class="main-date-header-container">
 
-            <div>
-                <p>Data</p>
-                <p>10.04.2023</p>
+            <div class="main-date-header-container">
+                <div>
+                    <p>Data</p>
+                    <p>{{date}}</p>
+                </div>
+                <div>
+                    <p>Godzina</p>
+                    <p>{{time}}</p>
+                </div>
             </div>
 
-            <div>
-                <p>Godzina</p>
-                <p>18:48</p>
-            </div>
 
         </div>
 
@@ -28,23 +30,47 @@
 
         <div class="main-form-container">
 
-            <form id="todoForm" class="main-form-container" action="">
+            <form id="todoForm" class="main-form-container" action="/" method="POST">
 
-                <div>
-                    <label>
-                        <span class="order-number">1.)</span>Nazwa TODO
-                        <input type="text" id="shortDescription" name="shortDescription"/>
-                    </label>
-                </div>
+                {{#if todo}}
 
-                <div>
-                    <label for="longDescription"><span class="order-number">2.)</span>Opis TODO</label>
-                    <textarea id="longDescription" name="longDescription" rows="10"></textarea>
-                </div>
+                    <div>
+                        <label>
+                            <span class="order-number">1.)</span>Nazwa TODO
+                            <input type="text" id="shortDescription" name="shortDescription" value="{{todo.shortDescription}}">
+                        </label>
+                    </div>
 
-                <div>
-                    <button type="submit">Dodaj</button>
-                </div>
+                    <div>
+                        <label for="longDescription"><span class="order-number">2.)</span>Opis TODO</label>
+                        <textarea id="longDescription" name="longDescription" rows="10">{{todo.longDescription}}</textarea>
+                    </div>
+
+                    <input type="hidden" id="id" name="id" value="{{todo._id}}">
+
+                    <div>
+                        <button type="submit">Aktualizuj</button>
+                    </div>
+
+                {{else}}
+
+                    <div>
+                        <label>
+                            <span class="order-number">1.)</span>Nazwa TODO
+                            <input type="text" id="shortDescription" name="shortDescription">
+                        </label>
+                    </div>
+
+                    <div>
+                        <label for="longDescription"><span class="order-number">2.)</span>Opis TODO</label>
+                        <textarea id="longDescription" name="longDescription" rows="10"></textarea>
+                    </div>
+
+                    <div>
+                        <button type="submit">Dodaj</button>
+                    </div>
+
+                {{/if}}
 
             </form>
 
@@ -64,8 +90,13 @@
 
                     <div class="edit-remove-btn-container">
 
-                        <button class="editBtn">Edytuj</button>
-                        <button class="removeBtn">Usuń</button>
+                        <form action="/{{this._id}}?_method=GET" method="GET">
+                            <button class="editBtn" name="editBtn" value="{{this._id}}">Edytuj</button>
+                        </form>
+
+                        <form action="/{{this._id}}?_method=DELETE" method="POST">
+                            <button class="removeBtn" name="removeBtn" value="{{this._id}}">Usuń</button>
+                        </form>
 
                     </div>
 
